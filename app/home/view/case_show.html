@@ -1,0 +1,48 @@
+{include file="common/head"/}
+<div class="swiper-container" id="ban">
+    <div class="swiper-wrapper">
+        {volist name="adList" id="vo" key="i"}
+        <div class="swiper-slide">
+            <img src="__PUBLIC__{$vo.pic}"/>
+        </div>
+        {/volist}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+<div class="container clearfix">
+    <div class="title-02">
+        <h2>CASES 案例展示</h2>
+        <h3>我们创造具有影响力的体验，<br/>无论是整个框架，还是局部，我们都力求在每一个细节中做到完美</h3>
+    </div>
+
+    <div class="al-about">
+        {$info.content}
+    </div>
+   <!-- <ul class="al-page clearfix">
+        <li class="fl">上一篇：<a href="#">织梦HTML5企业模板,带手机站同步更新,适合互联网</a></li>
+        <li class="fr">下一篇：<a href="#">Dede欧美风扁平响应式公司企业网站模板</a></li>
+    </ul>-->
+
+    <div class="title-02">
+        <h2>其它案例推荐</h2>
+
+    </div>
+
+    <ul class="row clearfix sy-allist">
+        {clt:list_join db='case' dbfield='catid' id='vo' joindb='category' joinfield='id' where='posid = 2 and catid=".input(catId)." ' order="listorder asc,createtime desc" limit='4'}
+        <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="sy-albox">
+                <a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}"><img src="__PUBLIC__{$vo.thumb}"/></a>
+                <h3><a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}">{$vo.title}</a></h3>
+                <p>{$vo.intro}</p>
+            </div>
+        </li>
+        {/clt:list_join}
+    </ul>
+</div>
+
+
+{include file="common/footer"/}

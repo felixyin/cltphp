@@ -1,0 +1,32 @@
+{include file="common/head"/}
+
+<!-- maincontent start here -->
+<section id="content-wrapper">
+    <div class="container clearfix">
+    <div class="row">
+        <div class="twelve columns">
+            <div class="row">
+                <div class="eight columns">
+                    <!-- begin of testimonials 1 -->
+                    {volist name="$list" id="vo"}
+                    <div class="testi-tape"></div>
+                    <div class="testi-container">
+                        <div class="testi-text">
+                            <p class="testi-name">{$vo.title}</p>
+                            <blockquote>
+                                <p>{$vo.info}</p>
+                            </blockquote>
+                        </div>
+                        <div class="testi-image">
+                            <img src="{$vo.title_thumb}" alt="{$vo.title}" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- maincontent end here -->
+{include file="common/footer"/}

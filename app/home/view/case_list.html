@@ -1,0 +1,68 @@
+{include file="common/head"/}
+<div class="swiper-container" id="ban">
+    <div class="swiper-wrapper">
+        {volist name="adList" id="vo" key="i"}
+        <div class="swiper-slide">
+            <img src="__PUBLIC__{$vo.pic}"/>
+        </div>
+        {/volist}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+<div class="container clearfix">
+    <div class="title-02">
+        <h2>CASES 案例展示</h2>
+        <h3>我们创造具有影响力的体验，<br/>无论是整个框架，还是局部，我们都力求在每一个细节中做到完美</h3>
+    </div>
+    <div id="pf-filter">
+    <ul class="al-nav clearfix">
+        <li><a href="" class="dq" data-filter="*">全部</a></li>
+        {volist name="options" id="v"}
+        <li><a href="" data-filter=".ll{$v.key}" title="{$v.val}">{$v.val}</a></li>
+        {/volist}
+    </ul>
+    </div>
+<!--    <ul class="pf-box-3col">
+        {volist name="$list" id="vo"}
+        <li class="ll{$vo.group}">
+                    <span class="link-zoom">
+                        <a class="fancybox" href="__PUBLIC__{$vo.pic}" data-fancybox-group="gallery" title="{$vo.title}">
+                            <img src="__PUBLIC__{$vo.pic}" alt="" class="fade" />
+                        </a>
+                    </span>
+            <h5>{$vo.title}</h5>
+            <p>{$vo.content}</p>
+        </li>
+        {/volist}
+    </ul>-->
+    <ul class="row clearfix sy-allist" id="container">
+        {volist name="$list" id="vo"}
+        <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ll{$vo.group}">
+            <div class="sy-albox">
+                <a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" title="{$vo.title}"><img src="__PUBLIC__{$vo.thumb}"/></a>
+                <h3><a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" title="{$vo.title}">{$vo.title}</a></h3>
+                <p>{$vo.intro}</p>
+            </div>
+        </li>
+        {/volist}
+    </ul>
+
+    <!--<nav class="fenye text-center">
+        <ul class="pagination pagination-sm">
+            <li><a aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <li class="active"><a>1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    </nav>-->
+
+</div>
+
+
+{include file="common/footer"/}

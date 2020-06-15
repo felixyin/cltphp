@@ -1,0 +1,79 @@
+{include file="common/head"/}
+
+<div class="swiper-container" id="ban">
+    <div class="swiper-wrapper">
+        {volist name="adList" id="vo" key="i"}
+        <div class="swiper-slide">
+            <img src="__PUBLIC__{$vo.pic}"/>
+        </div>
+        {/volist}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+<section>
+    <div class="box1 container">
+        <div class="title-01">
+            {clt:list db='debris_type' id='list' limit="1" where="id =1"}
+            <h2>{$list.title}</h2>
+            <h3>{$list.intro}</h3>
+            {/clt:list}
+        </div>
+
+        <div class="row">
+            <ul class="clearfix sy-hxtxt1">
+                {clt:list db='debris' id='list' limit="4" where="type_id = 1"}
+                <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <img src="__PUBLIC__{$list.pic}">
+                    <h3>{$list.title}</h3>
+                    {$list.content}
+                </li>
+                {/clt:list}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="box2">
+        <div class="container">
+            <div class="title-01">
+                {clt:list db='debris_type' id='list' limit="1" where="id =6"}
+                <h2>{$list.title}</h2>
+                <h3>{$list.intro}</h3>
+                {/clt:list}
+            </div>
+            <ul class="row clearfix sy-allist">
+                {clt:list_join db='case' dbfield='catid' id='vo' joindb='category' joinfield='id' where='posid = 1 ' order="listorder asc,createtime desc" limit='8'}
+                <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <div class="sy-albox">
+                        <a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}"><img src="__PUBLIC__{$vo.thumb}"/></a>
+                        <h3><a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}">{$vo.title}</a></h3>
+                        <p>{$vo.intro}</p>
+                    </div>
+                </li>
+                {/clt:list_join}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="box3 container">
+        <div class="title-01">
+            <h2>{clt:list db='debris_type' id='list' limit="1" where="id =5"}{$list.title}{/clt:list}</h2>
+        </div>
+        <div class="row">
+            <ul class="clearfix ff-logo">
+                {clt:list db='debris' id='list' limit="0" where="type_id =5"}
+                <li class="col-lg-2 col-md-3 col-sm-4 col-xs-4"><a href="{$list.url}"><img src="__PUBLIC__{$list.pic}"/></a></li>
+                {/clt:list}
+            </ul>
+
+        </div>
+    </div>
+</section>
+
+{include file="common/footer"/}

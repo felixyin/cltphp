@@ -1,0 +1,108 @@
+<footer>
+    <div class="row">
+        <div class="three columns mobile-two">
+            <ul><li class="address-icon"><a href="http://www.cltphp.com" title="{$sys.title}">{$sys.title}</a></li></ul>
+            <p class="copyright-text">
+                &copy;{$sys.copyright} <a href="http://www.cltphp.com/" style="color: #747373" rel="external" title="{$sys.title}">{$sys.title}</a><br>
+                <a href="http://www.miitbeian.gov.cn/" style="color: #747373" target="_blank" rel="nofollow">{$sys.bah}</a><br>
+            </p>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>网站地图</h5>
+            <ul>
+                <li {if condition="$controller eq 'index'" }class="qd selected" {
+                /if}><a href="{:url('home/index/index')}" title="CLTPHP内容管理系统">首页</a></li>
+
+                {volist name="category" id="vo"}
+                <li {if condition="$controller eq $vo['catdir']" }class="selected" {
+                /if}>
+                {if condition="$vo['child'] eq 1"}
+                <a href="#">{$vo.catname}</a>
+                <ul>
+                    {volist name="$vo.sub" id="v"}
+                    <li><a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$v['id']] )}"
+                           title="{$v.catname}-CLTPHP内容管理系统"><span>-</span> {$v.catname}</a></li>
+                    {/volist}
+                </ul>
+                {else /}
+                <a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$vo['id']] )}"
+                   title="{$vo.catname}-CLTPHP内容管理系统">{$vo.catname}</a>
+                {/if}
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>友情链接</h5>
+            <ul>
+                {volist name="linkList" id="vo"}
+                <li><a href="{$vo.url}" rel="external" title="{$vo.name}">{$vo.name}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>官方微信</h5>
+            <div class="wxsq">
+                <img src="__PUBLIC__{$sys.wxpic}" alt="微信二维码" title="微信二维码">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    var swiper = new Swiper('#ban', {
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        autoplay:true,
+        loop : true
+    });
+</script>
+<!--
+&lt;!&ndash; footer start here &ndash;&gt;
+<footer>
+    <div class="row">
+        <div class="three columns mobile-two">
+            <img src="__HOME__/images/logo2.png" alt="CLTPHP" class="img-left" />
+            <p class="copyright-text">
+                &copy;{$sys.copyright} <a href="http://www.cltphp.com/" style="color: #747373" rel="external" title="{$sys.title}">{$sys.title}</a><br>
+                <a href="http://www.miitbeian.gov.cn/" style="color: #747373" target="_blank" rel="nofollow">{$sys.bah}</a><br>
+            </p>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>联系我们</h5>
+            <ul>
+                <li class="address-icon"><a href="http://www.cltphp.com" title="{$sys.title}">{$sys.title}</a></li>
+                <li class="qq-icon"><a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ebcb5f6099570a3a1429036f42f787b9eea835fdbf6ded8eaee2a546855cce97"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="CLTPHP交流群0002" title="CLTPHP交流群0002"></a></li>
+                <li class="qq-icon">站长QQ号 : <a target="_blank" rel="nofollow" title="点击加好友" href="tencent://message/?uin=1109305987&Site=&Menu=yes">1109305987</a></li>
+                <li class="email-icon">Email : 1109305987@qq.com</li>
+            </ul>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>友情链接</h5>
+            <ul>
+                {volist name="linkList" id="vo"}
+                <li><a href="{$vo.url}" rel="external" title="{$vo.name}">{$vo.name}</a></li>
+                {/volist}
+                <li><a href="https://www.kancloud.cn/chichu/cltphp" target="_blank" rel="nofollow" title="CLTPHP操作开发手册">CLTPHP操作开发手册</a></li>
+            </ul>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>扫码捐助</h5>
+            <div class="wxsq">
+                <img src="__HOME__/images/wxsq.png" alt="CLTPHP微信二维码" title="CLTPHP微信二维码">
+            </div>
+        </div>
+    </div>
+</footer>
+&lt;!&ndash; footer end here &ndash;&gt;-->
+<script>
+    $('#noscript').remove();
+    jQuery(function ($) {
+        //external加上target="_blank"
+        $("a[rel*=external]").attr("target", "_blank");
+    });
+</script>
+</body>
+</html>

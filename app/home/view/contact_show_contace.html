@@ -1,0 +1,94 @@
+{include file="common/head"/}
+<style type="text/css">
+	#allmap {width: 100%;height: 588px;margin:0;font-family:"微软雅黑";}
+	.BMap_Marker label {max-width: 300px;}
+	.BMap_Marker img {max-width: 300px;}
+</style>
+<div class="swiper-container" id="ban">
+	<div class="swiper-wrapper">
+		{volist name="adList" id="vo" key="i"}
+		<div class="swiper-slide">
+			<img src="__PUBLIC__{$vo.pic}"/>
+		</div>
+		{/volist}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+	    
+	    
+	<div class="container clearfix lx-box">
+		<div class="title-02">
+			{$info.desc}
+		</div>
+		<div class="row">
+			<div class="lx-map">
+				<div id="allmap"></div>
+			</div>
+			<ul class="clearfix">
+				<li class="col-lg-5 col-md-5 col-sm-12 sy-lxwm">
+					<h2>{$info.company}</h2>
+					<p>Tel：{$info.tel} </p>
+					<p>QQ：{$info.qq}</p>
+					<p>邮箱：{$info.email} </p>
+					<p>地址：{$info.addr} </p>
+				</li>
+				<li class="col-lg-7 col-md-7 col-sm-12">
+					<div class="ipnt-box clearfix">
+						<input type="text" name="name" id="name" value="" placeholder="您的姓名" class="fl inpt-txt" />
+						<input type="text" name="email" id="email" value="" placeholder="您的(手机号/邮箱)" class="fr inpt-txt" />
+					</div>
+					<textarea  name="content" id="content" class="inpt-txtbox"></textarea>
+					<button type="submit"  id="buttonsend"  class="inpt-btn">提交您的需求</button>						
+				</li>
+			</ul>
+		</div>
+	</div>
+<script>
+    $('#buttonsend').click(function(){
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var content = $('#content').val();
+        if($.trim(name)==''){
+            alert('称呼不能为空');
+            return false;
+        }
+        if($.trim(email)==''){
+            alert('邮箱不能为空');
+            return false;
+        }
+        if($.trim(content)==''){
+            alert('内容不能为空');
+            return false;
+        }
+        $.post("{:url('senMsg')}",{title:'留言',name:name,email:email,content:content},function(data){
+            if(data.status==1){
+                alert('留言成功！感谢您对我们的支持！');
+                window.location.href = "{:url('home/contact/index',array('catId'=>input('catId')))}"
+            }else{
+                alert('留言失败！重新提交试试！');
+            }
+        })
+    });
+
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");// 创建Map实例
+    var point = new BMap.Point('{$info.lon}','{$info.lat}');
+    map.centerAndZoom(point, 18);// 初始化地图,设置中心点坐标和地图级别
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);               // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    var label = new BMap.Label("青岛仁智互动互联网信息有限公司",{offset:new BMap.Size(20,-10)});
+    marker.setLabel(label);
+    //添加地图类型控件
+    map.addControl(new BMap.MapTypeControl({
+        mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+    map.setCurrentCity("青岛");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+</script>
+
+{include file="common/footer"/}

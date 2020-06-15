@@ -1,0 +1,49 @@
+{include file="common/head"/}
+<div class="swiper-container" id="ban">
+	<div class="swiper-wrapper">
+		{volist name="adList" id="vo" key="i"}
+		<div class="swiper-slide">
+			<img src="__PUBLIC__{$vo.pic}"/>
+		</div>
+		{/volist}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+	    
+	    
+	<div class="container clearfix lx-box">
+		<div class="title-02">
+			<h2>CONTACT  联系我们</h2>
+			<h3>我们创造具有影响力的体验，<br />无论是整个框架，还是局部，我们都力求在每一个细节中做到完美</h3>
+		</div>
+		<div class="row">
+			<div class="lx-map">
+				<img src="img/mpa-img.jpg"/>
+			</div>
+			
+			
+			
+			<ul class="clearfix">
+				<li class="col-lg-5 col-md-5 col-sm-12 sy-lxwm">
+					<h2>大业设计集团产品设计公司</h2>
+					<p>Tel：0592-5534600 8800012 </p>
+					<p>QQ：400-0000-0000</p>
+					<p>FAX：400-0000-0000 </p>
+					<p>邮箱：400-0000-0000 </p>
+					<p>地址：中国广州市荔湾区荷景南路23号工业设计科技园 </p>
+				</li>
+				<li class="col-lg-7 col-md-7 col-sm-12">
+					<div class="ipnt-box clearfix">
+						<input type="text" name="" id="" value="" placeholder="您的姓名" class="fl inpt-txt" />
+						<input type="text" name="" id="" value="" placeholder="您的联系方式" class="fr inpt-txt" />
+					</div>
+					<textarea class="inpt-txtbox"></textarea>
+					<button type="button" class="inpt-btn">提交您的需求</button>						
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+{include file="common/footer"/}

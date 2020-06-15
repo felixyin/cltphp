@@ -1,0 +1,42 @@
+{include file="common/head"/}
+<div class="swiper-container" id="ban">
+    <div class="swiper-wrapper">
+        {volist name="adList" id="vo" key="i"}
+        <div class="swiper-slide">
+            <img src="__PUBLIC__{$vo.pic}"/>
+        </div>
+        {/volist}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+{volist name="$list" id="vo"}
+
+{eq name="vo.style" value="1"}
+<div class="about-box" style="background: url( __PUBLIC__{$vo.image}) center top no-repeat; background-size: cover;">
+    <div class="about container">
+        <div class="about-tt clearfix">
+            <h1>{$vo.title}</h1>
+            <h2>About Us</h2>
+        </div>
+        {$vo.content}
+    </div>
+</div>
+{/eq}
+
+{eq name="vo.style" value="2"}
+<div class="about2 container">
+    <div class="about-tt clearfix">
+        <h1>{$vo.title}</h1>
+        <h2>About Us</h2>
+    </div>
+    <div class="ys-img">
+        <img src="__PUBLIC__{$vo.image}"/>
+    </div>
+    {$vo.content}
+</div>
+{/eq}
+
+{/volist}
+
+{include file="common/footer"/}

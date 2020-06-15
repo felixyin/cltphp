@@ -1,0 +1,48 @@
+{include file="common/head"/}
+<div class="swiper-container" id="ban">
+    <div class="swiper-wrapper">
+        {volist name="adList" id="vo" key="i"}
+        <div class="swiper-slide">
+            <img src="__PUBLIC__{$vo.pic}"/>
+        </div>
+        {/volist}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+<div class="container clearfix">
+    <div class="title-02">
+        <h2>SERVICE 服务项目</h2>
+        <h3>我们创造具有影响力的体验，<br/>无论是整个框架，还是局部，我们都力求在每一个细节中做到完美</h3>
+    </div>
+    <div id="pf-filter2">
+        <ul class="al-nav clearfix">
+            {volist name="$list" id="vo" key="i"}
+            {if condition='$i eq 1'}
+            <li><a href="" data-filter=".ll{$vo.id}" class="dq">{$vo.title}</a></li>
+            {else /}
+            <li><a href="" data-filter=".ll{$vo.id}">{$vo.title}</a></li>
+            {/if}
+            {/volist}
+        </ul>
+    </div>
+
+    <div id="container2">
+        {volist name="$list" id="vo"}
+            <div class="ff-box ll{$vo.id}">
+                {$vo.content}
+            </div>
+        {/volist}
+    </div>
+
+
+</div>
+<script>
+    $(function(){
+        $("#pf-filter2 a:first").click();
+    });
+</script>
+
+{include file="common/footer"/}
